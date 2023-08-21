@@ -1,0 +1,17 @@
+import { makeDecorator } from '@storybook/addons';
+import { DECORATOR_NAME, PARAM_KEY } from '../types';
+import { Variants } from '../variants.model';
+export const withVariants = makeDecorator({
+    name: DECORATOR_NAME,
+    parameterName: PARAM_KEY,
+    skipIfNoParametersOrOptions: false,
+    wrapper: (storyFn, context) => {
+        const story = storyFn(context);
+        const variants = new Variants(storyFn, context);
+        if (!variants.isEnabled()) {
+            return story;
+        }
+        return { ...story, template: variants.getTemplate() };
+    },
+});
+//# sourceMappingURL=withVariants.decorator.js.map
