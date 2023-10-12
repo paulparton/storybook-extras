@@ -19,7 +19,7 @@
         "release": "auto shipit --no-changelog",
         "changelog": "auto-changelog -c ./changelog/config.json"
     },
-    "private": true,
+    "private": false,
     "devDependencies": {
         "@nrwl/nx-cloud": "latest",
         "auto": "^10.3.0",
