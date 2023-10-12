@@ -31,7 +31,7 @@ jobs:
         run: yarn install
 
       - name: Build library
-        run: npx nx build variants
+        run: npx nx run @paul-parton/variants:build
 
       - name: Navigate to library directory
         run: cd dist/variants
