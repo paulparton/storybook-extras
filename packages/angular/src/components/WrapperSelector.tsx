@@ -48,9 +48,9 @@ export const WrapperSelector: FC<any> = memo(() => {
                     return <TooltipLinkList links={links} />;
                 }}
             >
-                <IconButton key="wrapper" title="Change the wrapper of the story." active={selectedValue !== ''}>
+                {/* <IconButton key="wrapper" title="Change the wrapper of the story." active={selectedValue !== ''}>
                     <Icons icon="contrast" />
-                </IconButton>
+                </IconButton> */}
             </WithTooltip>
         </Fragment>
     );
