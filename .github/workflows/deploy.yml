@@ -50,7 +50,7 @@ name: Release
 on:
     push:
         branches:
-            - master
+            - clone-publish
 
 jobs:
     release:
