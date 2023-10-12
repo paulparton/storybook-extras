@@ -12,7 +12,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
               with:
-                  token: ${{ secrets.ADMIN_TOKEN }}
+                  token: ${{ secrets.GIT_TOKEN }}
 
             - name: Prepare repository
               run: git fetch --unshallow --tags
