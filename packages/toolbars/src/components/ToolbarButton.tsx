@@ -34,7 +34,7 @@ export const ToolbarButton: FC<any> = memo(({ button }: { button: ToolbarsParame
         return null;
     }
 
-    return (
+    return (``
         // <IconButton key={button.key} title={button.title} active={isActive} onClick={onClick}>
         //     <ButtonIcon button={button} />
         // </IconButton>
