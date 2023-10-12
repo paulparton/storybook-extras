@@ -4489,6 +4489,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@paul-parton/variants@workspace:packages/variants":
+  version: 0.0.0-use.local
+  resolution: "@paul-parton/variants@workspace:packages/variants"
+  dependencies:
+    "@storybook-extras/devkit": ^0.0.68
+    "@storybook-extras/toolbars": ^0.0.68
+    "@storybook/addon-essentials": next
+    "@storybook/angular": next
+    "@storybook/api": next
+    "@storybook/components": next
+    "@storybook/core-events": next
+    "@storybook/csf-tools": next
+    "@storybook/react": next
+    "@storybook/react-webpack5": next
+    cartesian: ^1.0.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    rimraf: ^3.0.2
+    storybook: next
+    tslib: ^2.5.0
+    typescript: 4.9.5
+  peerDependencies:
+    "@storybook/addons": "*"
+    "@storybook/api": "*"
+    "@storybook/components": "*"
+    "@storybook/core-events": "*"
+    "@storybook/theming": "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
 "@phenomnomnominal/tsquery@npm:4.1.1":
   version: 4.1.1
   resolution: "@phenomnomnominal/tsquery@npm:4.1.1"
@@ -4881,27 +4913,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storybook-extras/variants@^0.0.68, @storybook-extras/variants@workspace:packages/variants":
-  version: 0.0.0-use.local
-  resolution: "@storybook-extras/variants@workspace:packages/variants"
+"@storybook-extras/variants@npm:^0.0.68":
+  version: 0.0.68
+  resolution: "@storybook-extras/variants@npm:0.0.68"
   dependencies:
     "@storybook-extras/devkit": ^0.0.68
     "@storybook-extras/toolbars": ^0.0.68
-    "@storybook/addon-essentials": next
-    "@storybook/angular": next
-    "@storybook/api": next
-    "@storybook/components": next
-    "@storybook/core-events": next
-    "@storybook/csf-tools": next
-    "@storybook/react": next
-    "@storybook/react-webpack5": next
     cartesian: ^1.0.1
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    rimraf: ^3.0.2
-    storybook: next
-    tslib: ^2.5.0
-    typescript: 4.9.5
   peerDependencies:
     "@storybook/addons": "*"
     "@storybook/api": "*"
@@ -4910,8 +4928,9 @@ __metadata:
     "@storybook/theming": "*"
     react: ^18.2.0
     react-dom: ^18.2.0
-  languageName: unknown
-  linkType: soft
+  checksum: 3c411dd0d87ad6bc3358d1844ea297252effde57c3711a0360d780583d6599c1d407e21e9cfd522551ff4c36950ebea8d394352b5239355b5e5e61fbc8c51f0c
+  languageName: node
+  linkType: hard
 
 "@storybook/addon-actions@npm:7.0.0-beta.58":
   version: 7.0.0-beta.58
@@ -5499,13 +5518,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/channels@npm:7.0.5":
-  version: 7.0.5
-  resolution: "@storybook/channels@npm:7.0.5"
-  checksum: 7fe815b28fe9a73cfb0567cf7e41edee40f585151c2b8d6fbd089bb07b5752826392d78fdbc4f4f86f769a3b5771b24e19a0ffbc9da9d8bce88cf422baa64590
-  languageName: node
-  linkType: hard
-
 "@storybook/cli@npm:7.0.0-beta.58":
   version: 7.0.0-beta.58
   resolution: "@storybook/cli@npm:7.0.0-beta.58"
@@ -5620,15 +5632,6 @@ __metadata:
   dependencies:
     "@storybook/global": ^5.0.0
   checksum: 45a9d5708ab95242414d5d51312298dd6e6e20cecf154440d90e7f65eb18bb4961ccfbe6f1d94dc243b6d804ec519fd3462183cc0d53ac5cbc2572ac050174ee
-  languageName: node
-  linkType: hard
-
-"@storybook/client-logger@npm:7.0.5":
-  version: 7.0.5
-  resolution: "@storybook/client-logger@npm:7.0.5"
-  dependencies:
-    "@storybook/global": ^5.0.0
-  checksum: 0a877a0ce47f90d016269f89ffa57c5f0079f2fd5cd744c0b0097adf0ad422583b1089992f801b24e2260aeb0b4795b64d3fd0d73fc5b8709ea589e6bbd67134
   languageName: node
   linkType: hard
 
@@ -6461,18 +6464,6 @@ __metadata:
     "@types/express": ^4.7.0
     file-system-cache: ^2.0.0
   checksum: 404f71860121c14c01a1f877361fd57295a3b47f73f989a81259ef75d54d9391385c47eeabf6b5f92e8251f8023aaef990b429d34fb65dbfdb51f9ef75d5dffb
-  languageName: node
-  linkType: hard
-
-"@storybook/types@npm:7.0.5":
-  version: 7.0.5
-  resolution: "@storybook/types@npm:7.0.5"
-  dependencies:
-    "@storybook/channels": 7.0.5
-    "@types/babel__core": ^7.0.0
-    "@types/express": ^4.7.0
-    file-system-cache: ^2.0.0
-  checksum: e9865517141db65e66d979233a9f13056b0be5ac84709fe052d592c2f037b1932dde24dc71409cb9e82eb59bf956cbb1f9b77d5323af488c34605073adc859ab
   languageName: node
   linkType: hard
 
