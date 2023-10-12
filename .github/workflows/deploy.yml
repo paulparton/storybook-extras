@@ -34,7 +34,7 @@ jobs:
         run: npx nx run @paul-parton/variants:build
 
       - name: Navigate to library directory
-        run: cd dist/variants
+        run: cd packages/variants/dist
 
       - name: Publish to NPM
         run: npm publish --access public
