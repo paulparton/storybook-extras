@@ -1,29 +1,29 @@
-name: Deploy
+# name: Deploy
 
-on: workflow_dispatch
+# on: workflow_dispatch
 
-permissions:
-  id-token: write
-  pages: write
+# permissions:
+#   id-token: write
+#   pages: write
 
-jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Restore Cached Storybook
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-storybook-static
-          path: demo/storybook-static
+# jobs:
+#   deploy:
+#     environment:
+#       name: github-pages
+#       url: ${{ steps.deployment.outputs.page_url }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Restore Cached Storybook
+#         uses: actions/cache@v3
+#         with:
+#           key: ${{ runner.os }}-storybook-static
+#           path: demo/storybook-static
       
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: demo/storybook-static
+#       - name: Upload artifact
+#         uses: actions/upload-pages-artifact@v1
+#         with:
+#           path: demo/storybook-static
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v1
