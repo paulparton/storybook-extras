@@ -30,14 +30,13 @@ export const ToolbarButton: FC<any> = memo(({ button }: { button: ToolbarsParame
         updateGlobals({ [button.key]: !isActive });
     };
 
-    if(isDisabled) {
+    if (isDisabled) {
         return null;
     }
 
-    return (`` as any
-        // <IconButton key={button.key} title={button.title} active={isActive} onClick={onClick}>
-        //     <ButtonIcon button={button} />
-        // </IconButton>
+    return (
+        <IconButton key={button.key} title={button.title} active={isActive} onClick={onClick} content={undefined} autoFocus={undefined} rel={undefined} rev={undefined}>
+            <ButtonIcon button={button} />
+        </IconButton>
     );
 });
-
