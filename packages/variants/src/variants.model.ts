@@ -18,6 +18,13 @@ export class Variants {
         this._variants = combinations.map(combination => {
             const variantContext = this._getVariantContext(combination);
             const story = this.storyFn(variantContext);
+
+            // Mix the custom variants into the generated story.
+            story.props = {
+                ...story.props,
+                ...combination,
+            };
+
             return this._populateStoryTemplate(story);
         });
     }
@@ -60,7 +67,7 @@ export class Variants {
     }
 
     private _populateStoryTemplate(story) {
-        Object.keys(story.props).forEach(key => {
+        Object.keys(story.props || {}).forEach(key => {
             if (story.template) {
                 const value = story.props[key];
                 let replacedValue = story.props[key];
@@ -74,14 +81,14 @@ export class Variants {
                  * or that are being printed to the template using the angular curly braces {{ key }}
                  */
                 const inputAndPrintValueSearch = new RegExp(`(?:"${key}"|{{\\s*${key}\\s*}})`, 'g');
-                story.template = story.template.replace(inputAndPrintValueSearch, (match) => {
-                  if (match.startsWith('"')) {
-                    // If the key was in quotes, keep it in quotes
-                    return `"'${replacedValue}'"`;
-                  } else {
-                    // If it was matched with curly braces just print the value
-                    return replacedValue;
-                  }
+                story.template = story.template.replace(inputAndPrintValueSearch, match => {
+                    if (match.startsWith('"')) {
+                        // If the key was in quotes, keep it in quotes
+                        return `"'${replacedValue}'"`;
+                    } else {
+                        // If it was matched with curly braces just print the value
+                        return replacedValue;
+                    }
                 });
             }
         });
@@ -89,7 +96,7 @@ export class Variants {
     }
 
     private _getFilters() {
-        const items = this.config.items || [];
+        const items = this.config?.items || [];
         const includes = this.config?.include || [];
         const excludes = this.config?.exclude || [];
 
@@ -112,7 +119,25 @@ export class Variants {
         const filter = this._getFilters();
 
         const argsMap = {};
-        const sortedArgTypes = [...Object.entries(this.context.argTypes)].sort(([firstName], [secondName]) => {
+        const argTypes = [...Object.entries(this.context.argTypes)];
+
+        (this.context?.parameters?.variants?.customVariants || []).forEach(v => {
+            argTypes.push([
+                v.name,
+                {
+                    ...v,
+                    control: {
+                        type: 'radio',
+                    },
+                    type: {
+                        name: 'enum',
+                        value: v.options,
+                    },
+                },
+            ]);
+        });
+
+        const sortedArgTypes = argTypes.sort(([firstName], [secondName]) => {
             return firstName.localeCompare(secondName);
         });
 
