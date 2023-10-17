@@ -34,8 +34,8 @@ jobs:
         run: npx nx run @paul-parton/variants:build
 
       - name: Publish to NPM
-          run: |
-            cd packages/variants/dist
-            npm publish --access public
+        run: |
+          cd packages/variants/dist
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_KEY }}
