@@ -1,8 +1,8 @@
-import { makeDecorator } from '@storybook/addons';
+import { MakeDecoratorResult, makeDecorator } from '@storybook/addons';
 import { DECORATOR_NAME, PARAM_KEY } from '../types';
 import { Variants } from '../variants.model';
 
-export const withVariants = makeDecorator({
+export const withVariants: MakeDecoratorResult = makeDecorator({
     name: DECORATOR_NAME,
     parameterName: PARAM_KEY,
     skipIfNoParametersOrOptions: false,
