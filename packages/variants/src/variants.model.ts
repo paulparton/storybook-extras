@@ -17,6 +17,8 @@ export class Variants {
         const combinations = this._getCombinations();
         this._variants = combinations.map(combination => {
             const variantContext = this._getVariantContext(combination);
+            this.context = variantContext;
+            this.context.args = variantContext.args;
             this.context.variantArgs = variantContext.args;
             const story = this.storyFn(variantContext);
 
