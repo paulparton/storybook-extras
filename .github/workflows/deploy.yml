@@ -1,56 +1,42 @@
-name: Release
+name: Publish to NPM
 
 on:
-    push:
-        branches:
-            - clone-publish
+  push:
+    branches:
+      - clone-publish
 
 jobs:
-    release:
-        runs-on: ubuntu-latest
-        if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-        steps:
-            - uses: actions/checkout@v2
-              with:
-                  token: ${{ secrets.GIT_TOKEN }}
+  publish:
+    runs-on: ubuntu-latest
 
-            - name: Prepare repository
-              run: git fetch --unshallow --tags
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            - name: Use Node.js 16.x
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16.x
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
-            - name: Restore Cached node_modules
-              uses: actions/cache@v3
-              with:
-                key: ${{ runner.os }}-node_modules
-                path: node_modules
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
 
-            - name: Install dependencies
-              uses: bahmutov/npm-install@v1
-              with:
-                  install-command: yarn install
+      - name: Install dependencies
+        run: yarn install
 
-            - name: Cache node_modules
-              uses: actions/cache@v3
-              with:
-                key: ${{ runner.os }}-node_modules
-                path: node_modules
+      - name: Build library
+        run: npx nx run @paul-parton/variants:build
 
-            - name: Build Addons
-              run: yarn build:all
+      - name: Navigate to library directory
+        run: cd packages/variants/dist
 
-            - name: Create Release
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_KEY }}
-              run: yarn release
-
-            - name: Create Changelog
-              run: |
-                  yarn changelog
-                  git add .
-                  git commit -a -m 'chore(release): Update `CHANGELOG.md` [skip ci]'
-                  git push
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_KEY }}
