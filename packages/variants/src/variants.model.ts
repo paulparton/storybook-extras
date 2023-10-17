@@ -77,7 +77,11 @@ export class Variants {
                 if (typeof value === 'string') {
                     replacedValue = `${story.props[key]}`;
                 } else if (typeof value === 'object') {
-                    replacedValue = JSON.stringify(story.props[key]).replace(/"/g, "'");
+                    try {
+                        replacedValue = JSON.stringify(story.props[key]).replace(/"/g, "'");
+                    } catch (err) {
+                        console.warn(`Variants: Property ${key} couldn't be formatted by the variants plugin. It is possible a form control or other circular structure.`)
+                    }
                 }
                 /**
                  * Find all occurrences of the key to replace that appear to be component / attribute inputs as "key"
